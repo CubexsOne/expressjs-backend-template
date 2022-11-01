@@ -11,7 +11,14 @@ services:
   backend-run:
     image: node:18.12.0-alpine3.15
     container_name: backend
-    env_file: ./.env
+    environment:
+      - NODE_ENV=development
+      - PGHOST=localhost
+      - PGPORT=5432
+      - PGUSER=prjctdb
+      - PGPASSWORD=prjctdb
+      - PGDATABASE=prjctdb
+      - PGSCHEMA=public
     volumes:
       - ./package.json:/app/package.json
       - ./package-lock.json:/app/package-lock.json
@@ -23,7 +30,14 @@ services:
   backend-unit-tests:
     image: node:18.12.0-alpine3.15
     container_name: backend-test
-    env_file: ./.env
+    environment:
+      - NODE_ENV=test
+      - PGHOST=localhost
+      - PGPORT=5432
+      - PGUSER=prjctdb
+      - PGPASSWORD=prjctdb
+      - PGDATABASE=prjctdb
+      - PGSCHEMA=public
     volumes:
       - .:/app
     command: ['sh', '-c', 'cd /app && npm install && npm run test']
@@ -31,7 +45,14 @@ services:
   backend-ci-unit-tests:
     image: node:18.12.0-alpine3.15
     container_name: backend-ci-test
-    env_file: ./.env
+    environment:
+      - NODE_ENV=test
+      - PGHOST=localhost
+      - PGPORT=5432
+      - PGUSER=prjctdb
+      - PGPASSWORD=prjctdb
+      - PGDATABASE=prjctdb
+      - PGSCHEMA=public
     volumes:
       - .:/app
     command: ['sh', '-c', 'cd /app && npm install && npm run test-ci']
