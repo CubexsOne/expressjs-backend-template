@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - image: harbor.cubexs.dev/prjctrepo/backend:${VERSION}
+          imagePullPolicy: Always
+          name: backend
+      imagePullSecrets:
+        - name: prjctps-pull-secret
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
