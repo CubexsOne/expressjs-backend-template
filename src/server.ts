@@ -4,7 +4,7 @@ import { createServer } from 'http'
 import logger from './utils/logger'
 import { AppDataSource } from './utils/typeorm'
 import controller from './controller'
-import { initializeWsServer, wsServer } from './utils/ws-server'
+import { initializeWsServer } from './utils/ws-server'
 
 const App = express()
 const httpServer = createServer(App)
@@ -16,11 +16,4 @@ App.use('/api', controller)
 httpServer.listen(3000, () => {
   AppDataSource.initialize()
   logger.info('Server is running...')
-})
-
-wsServer.on('connection', function (socket) {
-  console.log('A user connected')
-  socket.on('disconnect', function () {
-    console.log('A user disconnected')
-  })
 })
