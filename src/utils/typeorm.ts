@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm'
+import { DataSource, LoggerOptions } from 'typeorm'
 import { environment } from './environment'
 
 export const AppDataSource = new DataSource({
@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource({
   password: environment.PGPASSWORD,
   database: environment.PGDATABASE,
   synchronize: true,
-  logging: true,
+  logging: ['error', 'migration'],
   entities: [__dirname + '/../models/*{.js,.ts}'],
   subscribers: [],
   migrations: [__dirname + '/../migrations/*{.js,.ts}'],
