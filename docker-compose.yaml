@@ -18,7 +18,6 @@ services:
       - PGUSER=prjctdb
       - PGPASSWORD=prjctdb
       - PGDATABASE=prjctdb
-      - PGSCHEMA=public
     volumes:
       - ./package.json:/app/package.json
       - ./package-lock.json:/app/package-lock.json
@@ -37,7 +36,6 @@ services:
       - PGUSER=prjctdb
       - PGPASSWORD=prjctdb
       - PGDATABASE=prjctdb
-      - PGSCHEMA=public
     volumes:
       - .:/app
     command: ['sh', '-c', 'cd /app && npm install && npm run test']
@@ -52,7 +50,6 @@ services:
       - PGUSER=prjctdb
       - PGPASSWORD=prjctdb
       - PGDATABASE=prjctdb
-      - PGSCHEMA=public
     volumes:
       - .:/app
     command: ['sh', '-c', 'cd /app && npm install && npm run test-ci']
