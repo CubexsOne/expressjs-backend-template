@@ -13,7 +13,7 @@ services:
     container_name: backend
     environment:
       - NODE_ENV=development
-      - PGHOST=localhost
+      - PGHOST=postgres
       - PGPORT=5432
       - PGUSER=prjctdb
       - PGPASSWORD=prjctdb
@@ -21,6 +21,7 @@ services:
     volumes:
       - ./package.json:/app/package.json
       - ./package-lock.json:/app/package-lock.json
+      - ./tsconfig.json:/app/tsconfig.json
       - ./src:/app/src
     networks:
       - local_prjctnet
@@ -31,7 +32,7 @@ services:
     container_name: backend-test
     environment:
       - NODE_ENV=test
-      - PGHOST=localhost
+      - PGHOST=postgres
       - PGPORT=5432
       - PGUSER=prjctdb
       - PGPASSWORD=prjctdb
@@ -45,7 +46,7 @@ services:
     container_name: backend-ci-test
     environment:
       - NODE_ENV=test
-      - PGHOST=localhost
+      - PGHOST=postgres
       - PGPORT=5432
       - PGUSER=prjctdb
       - PGPASSWORD=prjctdb
