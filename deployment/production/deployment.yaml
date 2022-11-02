@@ -20,6 +20,34 @@ spec:
         - image: harbor.cubexs.dev/prjctrepo/backend:${VERSION}
           imagePullPolicy: Always
           name: backend
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PGHOST
+              valueFrom:
+                secretKeyRef:
+                  name: psql
+                  key: host
+            - name: PGPORT
+              valueFrom:
+                secretKeyRef:
+                  name: psql
+                  key: port
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: psql
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: psql
+                  key: password
+            - name: PGDATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: psql
+                  key: database
       imagePullSecrets:
         - name: prjctps-pull-secret
       restartPolicy: Always
