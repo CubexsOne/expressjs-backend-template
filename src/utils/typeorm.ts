@@ -1,5 +1,15 @@
-import { DataSource, LoggerOptions } from 'typeorm'
+import { DataSource } from 'typeorm'
 import { environment } from './environment'
+
+interface SSLOptions {
+  rejectUnauthorized?: boolean
+}
+let ssl: SSLOptions | undefined = undefined
+if (environment.NODE_ENV === 'production') {
+  ssl = {
+    rejectUnauthorized: false,
+  }
+}
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -13,4 +23,5 @@ export const AppDataSource = new DataSource({
   entities: [__dirname + '/../models/*{.js,.ts}'],
   subscribers: [],
   migrations: [__dirname + '/../migrations/*{.js,.ts}'],
+  ssl,
 })
