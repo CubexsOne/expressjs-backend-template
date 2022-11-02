@@ -13,6 +13,7 @@
     "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
+    "socket.io": "^4.5.3",
     "typeorm": "^0.3.10",
     "winston": "^3.8.2"
   },
